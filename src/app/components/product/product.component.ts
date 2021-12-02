@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { map, Observable } from 'rxjs';
+import { ProductState } from 'src/app/ngrx/products.rducer';
+import { ProductStateEnum } from '../../ngrx/products.rducer';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
+  readonly ProductStateEnum = ProductStateEnum;
+  productsState$!: Observable<ProductState>;
 
-  constructor() { }
+  constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
+    this.productsState$ = this.store.pipe(map((state) => state.catalogState));
   }
-
 }

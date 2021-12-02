@@ -18,7 +18,7 @@ export class ProductEffects {
   getAllProductsEffect: Observable<Action> = createEffect(() =>
     this.effectActions.pipe(
       ofType(ProductsActionsTypes.GET_ALL_PRODUCTS),
-      mergeMap((action) => {
+      mergeMap(() => {
         return this.productService.getAllProduct().pipe(
           map((products) => new GetALLProductsActionSuccess(products)),
           catchError((err) => of(new GetALLProductsActionError(err)))

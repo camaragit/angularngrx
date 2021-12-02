@@ -12,7 +12,8 @@ import { ProductListComponent } from './components/product/product-list/product-
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
+import { productReducer } from './ngrx/products.rducer';
+import { ProductEffects } from './ngrx/products.effects';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     NavBarComponent,
     ProductComponent,
     ProductNavBarComponent,
-    ProductListComponent
+    ProductListComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,11 +29,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument()
+    StoreModule.forRoot({ catalogState: productReducer }),
+    EffectsModule.forRoot([ProductEffects]),
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,5 +1,6 @@
 import { Product } from '../models/product.model';
 import { ProductActions, ProductsActionsTypes } from './products.actions';
+import { Action } from '@ngrx/store';
 
 export enum ProductStateEnum {
   LOADING = 'LOADING',
@@ -18,25 +19,24 @@ const initState: ProductState = {
   errorMessage: '',
 };
 export function productReducer(
-  state: ProductState,
-  action: ProductActions
+  state: ProductState = initState,
+  action: Action
 ): ProductState {
   switch (action.type) {
     case ProductsActionsTypes.GET_ALL_PRODUCTS:
       return { ...state, dataState: ProductStateEnum.LOADING };
-    case ProductsActionsTypes.GET_ALL_PRODUCTS:
-      return { ...state, dataState: ProductStateEnum.LOADING };
+
     case ProductsActionsTypes.GET_ALL_PRODUCTS_SUCCESS:
       return {
         ...state,
         dataState: ProductStateEnum.LOADED,
-        products: action.payload,
+        products: (<ProductActions>action).payload,
       };
     case ProductsActionsTypes.GET_ALL_PRODUCTS_ERROR:
       return {
         ...state,
         dataState: ProductStateEnum.ERROR,
-        errorMessage: action.payload,
+        errorMessage: (<ProductActions>action).payload,
       };
 
     default:
