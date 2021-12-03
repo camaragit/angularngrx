@@ -1,31 +1,5 @@
 <div class="p-4">
 <app-product-nav-bar></app-product-nav-bar>
+<app-product-list [state]="productsState$"></app-product-list>
 
-<ng-container *ngIf="productsState$ | async as results" [ngSwitch]="results.dataState">
-
-   <ng-container *ngSwitchCase="ProductStateEnum.INITIAL">
-    <div class="p-2">Initial State</div>
-  </ng-container>
-    <ng-container *ngSwitchCase="ProductStateEnum.LOADED">
-    <table class="table">
-      <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Prix</th>
-        <th>Quantité</th>
-        <th>Selectionné</th>
-        <th>Disponible</th>
-      </tr>
-      <tr *ngFor="let product of results.products">
-        <td>{{product.id}}</td>
-        <td>{{product.name}}</td>
-        <td>{{product.price}}</td>
-        <td>{{product.quantity}}</td>
-        <td ><span [ngClass]="product.selected ? 'fa fa-check-circle': 'fa fa-circle'"></span></td>
-        <td ><span [ngClass]="product.available ? 'fa fa-check-circle': 'fa fa-circle'"></span></td>
-   </tr>
-    </table>
-  </ng-container>
-
-</ng-container>
 </div>

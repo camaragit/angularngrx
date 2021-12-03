@@ -1,1 +1,21 @@
-<p>product-list works!</p>
+<ng-container *ngIf="state | async as results" [ngSwitch]="results.dataState">
+
+  <ng-container *ngSwitchCase="ProductStateEnum.INITIAL">
+   <div class="p-2">Initial State</div>
+ </ng-container>
+   <ng-container *ngSwitchCase="ProductStateEnum.LOADED">
+   <table class="table">
+     <tr>
+       <th>ID</th>
+       <th>Nom</th>
+       <th>Prix</th>
+       <th>Quantité</th>
+       <th>Selectionné</th>
+       <th>Disponible</th>
+     </tr>
+
+     <app-product-item *ngFor="let product of results.products" [product]="product" style="display: contents;"></app-product-item>
+   </table>
+ </ng-container>
+
+</ng-container>

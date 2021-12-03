@@ -1,0 +1,19 @@
+<tr >
+  <td>{{product.id}}</td>
+  <td>{{product.name}}</td>
+  <td>{{product.price}}</td>
+  <td>{{product.quantity}}</td>
+  <td ><span [ngClass]="product.selected ? 'fa fa-check-circle': 'fa fa-circle'"></span></td>
+  <td ><span [ngClass]="product.available ? 'fa fa-check-circle': 'fa fa-circle'"></span></td>
+  <td>
+    <button class="btn btn-sm " [ngClass]="product.selected?'btn-success':'btn-dark'" (click)="onSelect(product)">
+      <i *ngIf="product.selected" class=" ">Selectionner</i>
+      <i *ngIf="!product.selected" class=" ">Déselectionner</i>
+    </button>
+  </td>
+  <td>
+    <button class="btn btn-sm btn-danger "  (click)="onDelete(product)">
+      <span class="fa fa-trash-o "></span>
+    </button>
+  </td>
+</tr>

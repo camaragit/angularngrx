@@ -23,10 +23,14 @@ export class ProductService {
     return this.http.get<Product[]>(environment.host+'products?name_like='+name);
   }
   selectProduct(prd:Product): Observable<Product>{
+    console.log('produit type',typeof prd);
+    console.log('produit ', prd);
     prd.selected = !prd.selected;
     return this.http.put<Product>(environment.host+'products/'+prd.id,prd);
   }
   deleteProduct(prod:Product):Observable<void>{
+    console.log('produit type',typeof prod);
+    console.log('produit ', prod);
    return this.http.delete<void>(environment.host+'products/'+prod.id);
   }
   addProduct(prd:Product): Observable<Product>{

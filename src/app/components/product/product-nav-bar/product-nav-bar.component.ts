@@ -1,6 +1,7 @@
+import { GetProductsByKeywordAction } from './../../../ngrx/products.actions';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { GetALLProductsAction } from '../../../ngrx/products.actions';
+import { GetALLProductsAction, GetSelectedProductsAction } from '../../../ngrx/products.actions';
 
 @Component({
   selector: 'app-product-nav-bar',
@@ -14,5 +15,11 @@ export class ProductNavBarComponent implements OnInit {
   onGetAllProduct() {
     this.store.dispatch(new GetALLProductsAction({}));
   }
-  onGetSelectedProduct() {}
+  onGetSelectedProduct() {
+    this.store.dispatch(new GetSelectedProductsAction({}));
+  }
+  onSearch(input :any){
+    console.log(input.keyword);
+    this.store.dispatch(new GetProductsByKeywordAction(input.keyword));
+  }
 }

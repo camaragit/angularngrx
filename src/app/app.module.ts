@@ -12,8 +12,9 @@ import { ProductListComponent } from './components/product/product-list/product-
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { productReducer } from './ngrx/products.rducer';
+import { productReducer } from './ngrx/products.reducer';
 import { ProductEffects } from './ngrx/products.effects';
+import { ProductItemComponent } from './components/product/product-list/product-item/product-item.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import { ProductEffects } from './ngrx/products.effects';
     ProductComponent,
     ProductNavBarComponent,
     ProductListComponent,
+    ProductListComponent,
+    ProductItemComponent,
   ],
   imports: [
     BrowserModule,
